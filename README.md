@@ -1,19 +1,13 @@
-# weatherbeacon
+# Weatherbeacon
 
-FIXME
+An extremely easy-to-use, powerful, natural language based weather API. 
 
-## Prerequisites
+* Still under active development as part of the Clojure Cup 
 
-You will need [Leiningen][1] 1.7.0 or above installed.
+## Examples
 
-[1]: https://github.com/technomancy/leiningen
+GET "www.weatherbeacon.com/query?q"
 
-## Running
+where q is a url encoded version of a question such as, 'what is the
+likelyhood of rain tomorrow?'
 
-To start a web server for the application, run:
-
-    lein ring server
-
-## License
-
-Copyright © 2013 FIXME
