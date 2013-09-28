@@ -2,7 +2,9 @@
   :description "Easy-to-use, natural languag weather api"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [compojure "1.1.5"]]
+                 [compojure "1.1.5"]
+                 [hiccup "1.0.2"]
+                 [clj-stacktrace "0.2.5"]]
   :plugins [[lein-ring "0.8.5"]]
   :ring {:handler weatherbeacon.handler/app}
   :profiles
