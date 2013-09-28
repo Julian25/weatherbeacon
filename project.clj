@@ -1,5 +1,5 @@
 (defproject weatherbeacon "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "Easy-to-use, natural languag weather api"
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.5"]]

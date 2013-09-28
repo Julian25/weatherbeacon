@@ -1,10 +1,11 @@
 (ns weatherbeacon.handler
   (:use compojure.core)
   (:require [compojure.handler :as handler]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [weatherbeacon.controllers.weather :as weather]))
 
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/" [] "Welcome to Weatherbeacon")
   (route/resources "/")
   (route/not-found "Not Found"))
 

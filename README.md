@@ -1,6 +1,7 @@
 # Weatherbeacon
 
-An extremely easy-to-use, powerful, natural language based weather API. 
+An extremely easy-to-use, powerful, natural language based weather site
+and API. 
 
 * Still under active development as part of the Clojure Cup 
 
