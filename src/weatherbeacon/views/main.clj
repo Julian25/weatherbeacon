@@ -5,9 +5,9 @@
 
 (defn index-view []
   (layout/common "Weatherbeacon"
-          [:h2 "TESTING"]))
+          [:h2 "Welcome to WeatherBeacon"]))
 
-(defn location-data-view [location]
+(defn location-data-view [weather-data]
   (layout/common "Location Data"
-                 [:h2 location]))
+                 [:p weather-data]))
 
