@@ -6,7 +6,8 @@
                  [hiccup "1.0.2"]
                  [clj-stacktrace "0.2.5"]
                  [clj-http "0.7.7"]
-                 [cheshire "5.2.0"]]
+                 [cheshire "5.2.0"]
+                 [org.clojure/core.memoize "0.5.6"]]
   :plugins [[lein-ring "0.8.5"]]
   :ring {:handler weatherbeacon.handler/app}
   :profiles
