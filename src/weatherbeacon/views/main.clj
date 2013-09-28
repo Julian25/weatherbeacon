@@ -11,3 +11,7 @@
   (layout/common "Location Data"
                  [:p weather-data]))
 
+(defn query-view [query]
+  (layout/common "Query"
+                  [:p query]))
+
