@@ -29,7 +29,7 @@
         weather-information-string (cond
                                      (= "rain" (str weather-type)) (cond
                                                                     (= 0 (get data :intensity)) (str "Things are looking good. The probability of rain is " (get data :probability))
-                                                                    (> 0 (get data :intensity)) (str "Looks like it might rain. If it is not already, the probability of it raining is: " (get data :probability)))
+                                                                    (> (get data :intensity) 0) (str "Looks like it might rain. If it is not already, the probability of it raining is: " (get data :probability)))
                                      (= "temperature" (str weather-type)) (if (not= nil (get data :temperature))
                                                                           (str "The temperature " time-frame " will be " (get data :temperature) ". The high will be " (get data :temperatureMax) " at around " (clj-time.format/unparse (clj-time.format/formatters :hour-minute) (clj-time.coerce/from-long (get data :temperatureMaxTime))))
                                                                             (str "Could not retrieve temperature data."))
