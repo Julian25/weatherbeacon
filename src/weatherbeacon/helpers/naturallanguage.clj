@@ -3,7 +3,7 @@
 
 
 (def time-set (set ["monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday"
-                  "tomorrow" "soon" "today" "next week" "this week" "now" "later" "current" "currently"]))
+                  "tomorrow" "soon" "today" "week" "now" "later" "current" "currently"]))
 
 (def weather-set (set ["rain" "wind" "temperature" "temp" "snow" "storm" "hot" "cold" "weather"]))
 
