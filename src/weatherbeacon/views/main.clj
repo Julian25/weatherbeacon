@@ -57,6 +57,7 @@
   [:div {:class "jumbotron"}
    [:h1 {:class "header"} "Welcome to Weatherbeacon"]
    [:p {:class "lead aligned"} "A 'natural' way to check the weather"]
+   [:a {:class "btn btn-danger vote" :href "http://clojurecup.com/app.html?app=weatherbeacon"} "Vote For My App on Clojure Cup"]
    (form-to [:post "/query"]
             [:div {:class "form-group main-form"}
             (label "query" "What would you like to know?")
