@@ -5,7 +5,8 @@
 (def time-set (set ["monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday"
                   "tomorrow" "soon" "today" "week" "now" "later" "current" "currently"]))
 
-(def weather-set (set ["rain" "wind" "temperature" "temp" "snow" "storm" "hot" "cold" "weather"]))
+(def weather-set (set ["rain" "wind" "temperature" "temp" "snow" "storm" "hot" "cold" 
+                       "weather" "humidity" "pressure" "ozone"]))
 
 (defn date-handler [time-token]
   (def dates ["monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday"])

@@ -53,8 +53,8 @@
 ;; JSON data apart and returns the relevant data
 (defn master-data-function [data time-category weather-type]
   (cond 
-    (= (get time-category :type) "currently") {:data (get data :currently) :weather weather-type}
-    (= (get time-category :type) "hourly") (println {:data (get data :hourly) :weather weather-type})
+    (= (get time-category :type) "currently") {:data (get data :currently) :offset (get time-category :offset) :weather weather-type}
+    (= (get time-category :type) "hourly")  {:data (get data :hourly) :offset (get time-category :offset) :weather weather-type}
     :else "No data found"))
 
 (defn get-time-data [data weather-type time-id today]
@@ -63,12 +63,35 @@
     time-data))
 
 ;; This function takes the time data and spits back the relevant weather types
-(defn get-relevant-weather [time-date weather-type])
+(defn get-relevant-weather [time-data weather-type]
+  (let [data (get time-data :data)
+        offset (get time-data :offset)
+        summary (get-in data [:summary])
+        weather-data (nth (get data :data) offset)]
+    (cond
+      (contains? #{"rain" "snow" "storm"} (str weather-type)) {:summary summary
+                                                             :intensity (get weather-data :precipIntensity)
+                                                             :probability (get weather-data :precipProbability)
+                                                             :precip-type (get weather-data :precipType)}
+      (contains? #{"temp" "temperature"} (str weather-type)) {:summary summary
+                                                              :temperature (get weather-data :temperature)
+                                                              :temperatureMax (get weather-data :temperatureMax)
+                                                              :temperatureMaxTime (get weather-data :temperatureMaxTime)}
+      (contains? #{"wind"} (str weather-type)) {:summary summary
+                                                :windSpeed (get weather-data :windSpeed)}
+      (contains? #{"humidity" "pressure" "ozone"} (str weather-type)) {:summary summary
+                                                                       :humidity (get weather-data :humidity)
+                                                                       :pressure (get weather-data :pressure)
+                                                                       :ozone (get weather-data :ozone)
+                                                                       :visibility (get weather-data :visibility)}
+      :else "No data found")))
 
 (defn get-forcast [tokens coordinates]
+  (println tokens)
   (let [returned-data (attempt-request-memo coordinates)
         time-data (get-time-data returned-data (get tokens :weather)
                                  (get-data-time-id tokens) (get-today tokens))
-        relevant-data (get-relevant-weather time-data (get tokens :weather))]
+        relevant-data (get-relevant-weather time-data (get tokens :weather-type))]
+    (println relevant-data)
     relevant-data))
 
