@@ -3,7 +3,7 @@
   :url "http://example.com/FIXME"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [compojure "1.1.5"]
-                 [hiccup "1.0.2"]
+                 [hiccup "1.0.4"]
                  [clj-stacktrace "0.2.5"]
                  [clj-http "0.7.7"]
                  [cheshire "5.2.0"]

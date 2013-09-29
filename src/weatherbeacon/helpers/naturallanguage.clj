@@ -3,15 +3,14 @@
 
 
 (def time-set (set ["monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday"
-                  "tomorrow" "soon" "today" "next week" "now" "later"]))
+                  "tomorrow" "soon" "today" "next week" "this week" "now" "later" "current" "currently"]))
 
 (def weather-set (set ["rain" "wind" "temperature" "temp" "snow" "storm" "hot" "cold" "weather"]))
 
 (defn date-handler [time-token]
   (def dates ["monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday"])
   (let [raw-date (get (client/get "http://www.timeapi.org/utc/now?format=%25a") :body)]
-        (println raw-date)
-  raw-date))
+    raw-date))
 
 (defn classify-query [raw-string]
   (let [stripped-input (clojure.string/lower-case (clojure.string/replace raw-string #"\?" ""))
