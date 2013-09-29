@@ -10,17 +10,17 @@
 (defn index []
   (views/index-view))
 
-(defn get-weather [location]
+(defn get-weather [weather-tokens location]
   (let [coordinates (geocoder/return-coordinates location)
-        weather-data (forcast/get-weather-for-location coordinates)]
-    (views/location-data-view (str weather-data))))
+        weather-data (forcast/get-forcast weather-tokens coordinates)]
+    weather-data))
 
-(defn weather-query [query-string]
-  (let [weather-input (nl/classify-query (str "Will it rain Monday?"))]
-    (views/query-view (str weather-input))))
+(defn weather-query [query-string location]
+  (let [weather-input (nl/classify-query query-string)
+        forcast-data (get-weather weather-input location)]
+    (views/query-view (str forcast-data))))
 
 
 (defroutes routes
   (GET "/" [] (index))
-  (GET "/weather/:location" [location] (get-weather location))
-  (GET "/query/:query" [query] (weather-query query)))
+  (POST "/query" [query location] (weather-query query location)))

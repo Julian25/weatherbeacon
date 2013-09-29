@@ -16,7 +16,8 @@
 (def attempt-request-memo (core-memo/ttl attempt-request :ttl/threshold 21600))
 
 
-(defn get-weather-for-location [coordinates]
+(defn get-forcast [tokens coordinates]
   (let [returned-data (attempt-request-memo coordinates)
         raw-data (parse-string returned-data)]
-    (println raw-data)))
+    (println raw-data)
+    tokens))
