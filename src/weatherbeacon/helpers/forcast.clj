@@ -17,7 +17,8 @@
 
 
 (defn get-forcast [tokens coordinates]
-  (let [returned-data (attempt-request-memo coordinates)
+  (let [returned-data (attempt-request-memo (clojure.string/lower-case coordinates))
         raw-data (parse-string returned-data)]
     (println raw-data)
+    (println (core-memo/memoized? attempt-request-memo))
     tokens))
