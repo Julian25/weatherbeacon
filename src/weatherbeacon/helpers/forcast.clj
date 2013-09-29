@@ -4,12 +4,6 @@
             [clojure.core.memoize :as core-memo]
             [forecast-clojure.core :as forecast]))
 
-;(defn attempt-request [coordinates]
-  ;(def url "https://api.forecast.io/forecast/5e88fd6436621d9483e048d32862dbe2/")
-  ;(let [pretty-coords (apply str (interpose ", " coordinates))
-        ;return-data (get (client/get (clojure.string/join
-                                       ;[url pretty-coords]) {:accept :json}) :body)]
-    ;return-data))
 
 (defn attempt-request [coordinates]
   (forecast/forecast (str (first coordinates)) (str (second coordinates))))
@@ -42,7 +36,7 @@
   (cond
     (contains? #{"monday" "tuesday" "wednesday" "thursday" "friday" "saturday" "sunday"} time-token)
         (day-of-week-check time-token today-token)
-    (contains? #{"currently" "current" "now" "today"} time-token) {:type "currently" :offset 0}
+    (contains? #{"currently" "current" "now" "today"} time-token) {:type "currently" :offset 1}
     (contains? #{"later" "soon"} time-token) {:type "hourly" :offset 2}
     (contains? #{"tomorrow"} time-token) {:type "daily" :offset 1}
     (contains? #{"week"} time-token) {:type "daily" :offset 4}
@@ -55,6 +49,7 @@
   (cond 
     (= (get time-category :type) "currently") {:data (get data :currently) :offset (get time-category :offset) :weather weather-type}
     (= (get time-category :type) "hourly")  {:data (get data :hourly) :offset (get time-category :offset) :weather weather-type}
+    (= (get time-category :type) "daily") {:data (get data :daily) :offset (get time-category :offset) :weather weather-type}
     :else "No data found"))
 
 (defn get-time-data [data weather-type time-id today]
@@ -87,11 +82,10 @@
       :else "No data found")))
 
 (defn get-forcast [tokens coordinates]
-  (println tokens)
   (let [returned-data (attempt-request-memo coordinates)
         time-data (get-time-data returned-data (get tokens :weather)
                                  (get-data-time-id tokens) (get-today tokens))
+        time-frame (get tokens :time-frame)
         relevant-data (get-relevant-weather time-data (get tokens :weather-type))]
-    (println relevant-data)
-    relevant-data))
+    {:time time-frame :weather-type (get tokens :weather-type) :data relevant-data}))
 

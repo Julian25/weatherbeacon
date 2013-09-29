@@ -6,6 +6,7 @@
                  [hiccup "1.0.4"]
                  [clj-stacktrace "0.2.5"]
                  [clj-http "0.7.7"]
+                 [clj-time "0.6.0"]
                  [cheshire "5.2.0"]
                  [org.clojure/core.memoize "0.5.6"]
                  [forecast-clojure "1.0.3"]]

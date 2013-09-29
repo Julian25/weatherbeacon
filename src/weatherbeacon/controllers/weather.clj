@@ -18,7 +18,7 @@
 (defn weather-query [query-string location]
   (let [weather-input (nl/classify-query query-string)
         forcast-data (get-weather weather-input location)]
-    (views/query-view (str forcast-data))))
+    (views/query-view forcast-data)))
 
 
 (defroutes routes
