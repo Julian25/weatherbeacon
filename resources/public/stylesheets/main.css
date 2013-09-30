@@ -1,0 +1,13 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css");
+
+.header {
+  text-align: center;
+}
+
+.aligned {
+  text-align: center;
+}
+
+.query-submit {
+  margin-top: 10px;
+}
